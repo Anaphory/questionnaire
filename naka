@@ -1,0 +1,53 @@
+#!/home/gereon/sunda/bin/python
+
+import os
+import cgi
+import csv
+import sys
+import hashlib
+from flup.server.fcgi_fork import WSGIServer
+
+
+def form():
+    return open("formular.html", encoding="utf-8").read()
+
+
+def application(env, start_response):
+    path = env.get('REQUEST_METHOD', "GET")
+    if path == "POST":
+        remote = env.get("REMOTE_ADDR")
+        fs = cgi.FieldStorage(fp=env['wsgi.input'],
+                              environ=env)
+        try:
+            data_dict = {key: fs.getfirst(key) for key in fs.keys()}
+            data_dict["IP-Hash"] = hashlib.sha256(remote.encode("utf-8")).hexdigest()
+            print(data_dict)
+            with open("log.txt", "at") as logfile:
+                formatter = csv.DictWriter(
+                    logfile,
+                    ["IP-Hash", "Name", 'Land', 'Einschr', 'TddE', 'November', 'Fr2019kurz', 'Fr2019', 'Kommentar', "Thema", "Leiter"])
+                formatter.writerow(data_dict)
+            response_body = "Danke!"
+        except Exception as e:
+            with open("errorlog", "a") as log:
+                log.write("\n") 
+                log.write(str(e)) 
+            response_body = """Fehler. Schreibst du uns bitte eine Mail an naka18@aka.cde-ev.de?"""
+    else:
+        try:
+            response_body = form()
+        except Exception as e:
+            with open("errorlog", "a") as log:
+                log.write("\n") 
+                log.write(str(e)) 
+    response_body = response_body.encode("utf-8")
+    status = "200 OK"
+    response_headers = [
+        ("Content-Length", str(len(response_body))),
+        ("Content-Type", "text/html; charset=utf-8")]
+    start_response(status, response_headers)
+    return [response_body]
+
+
+if __name__ == '__main__':
+    WSGIServer(application).run()

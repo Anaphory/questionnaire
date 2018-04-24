@@ -1,0 +1,55 @@
+<html>
+    <h1>Umfrage CdE-Nachhaltigkeitsakademie</h1>
+    <form action="/naka" method="post">
+        <p>
+    Name: <input type="text" name="Name" /><br />
+    (Bundes-)Land: <input type="text" name="Land" /><br />
+    Status: 
+    <select>
+    <option value="Schueler">Schüler</option>
+    <option value="Student">Student</option>
+    <option value="Angestellter">Angestellter</option>
+    <option value="Anders">Anderes</option>
+    </select>
+    <br />
+    
+        </p>
+
+        <p>
+    <select name="Einschr">
+    <option value="Ja">Ich will gerne zur Nachhaltigkeitsakademie kommen.</option>
+    <option value="Zeit">Ich will prinzipiell gerne zur Naka kommen, habe aber enge Zeit-Einschränkungen.</option>
+    <option value="Geld">Ich will prinzipiell gerne zur Naka kommen, habe aber enge Geld-Einschränkungen.</option>
+    <option value="ZeitGeld">Ich will prinzipiell gerne zur Naka kommen, habe aber enge Geld- und Zeit-Einschränkungen.</option>
+    <option value="English">I'm interested in a sustainablility workshop, but I wouldn't come if it was all in German.</option>
+    <option value="Nein">Ich bin momentan nicht an einer Nachhaltigkeitsakademie interessiert.</option>
+    </select>
+    <br />
+        </p>
+    
+    Falls du prinzipiell interessiert bist, was könnte dir passen?<br />
+    <table>
+        <tr>
+            <th> Datum und angestrebter Preis </th> <th> Definitiv /</th> <th> mit Mühe /</th> <th> zur Not /</th> <th> Nein </th>
+        </tr>
+        <tr>
+            <td> 28.9.2018–3.10.2018 (unter 200 €) </td> <td> <input type="radio" name="TddE" value="Ja" </td><td> <input type="radio" name="TddE" value="Mühe" </td><td> <input type="radio" name="TddE" value="Not" </td><td> <input type="radio" name="TddE" value="Nein" </td>
+        </tr>
+        <tr>
+            <td> 31.10.2018–4.11.2018 (unter 200 €) </td> <td> <input type="radio" name="November" value="Ja" </td><td> <input type="radio" name="November" value="Mühe" </td><td> <input type="radio" name="November" value="Not" </td><td> <input type="radio" name="November" value="Nein" </td>
+        </tr>
+        <tr>
+            <td> ca. 4 Tage zwischen 22.3.2019–31.3.2019 (unter 200 €)</td> <td> <input type="radio" name="Fr2019kurz" value="Ja" </td><td> <input type="radio" name="Fr2019kurz" value="Mühe" </td><td> <input type="radio" name="Fr2019kurz" value="Not" </td><td> <input type="radio" name="Fr2019kurz" value="Nein" </td>
+        </tr>
+        <tr>
+            <td> 22.3.2019–31.3.2019 (unter 300 €)</td> <td> <input type="radio" name="Fr2019" value="Ja" </td><td> <input type="radio" name="Fr2019" value="Mühe" </td><td> <input type="radio" name="Fr2019" value="Not" </td><td> <input type="radio" name="Fr2019" value="Nein" </td>
+        </tr>
+    </table>
+    <p>Ich fände einen Kurs, Workshop, Vortrag, Einheit, Plenum, Podiumsdiskussion, etc. über <input type="text" name="Thema" /> interessant und ich denke, ihr solltet <input type="text" name="Leiter" value="mich" /> fragen, so etwas anzubieten.</p>
+    <p>Kommentar:<br />
+    <textarea name="Kommentar"></textarea><br />
+    </p>
+    <input type="submit" value="Submit"/>
+    </form>
+    <p>Alle Felder sind optional. Alle eingegebenen Daten werden zusammen mit einem Hash der IP-Adresse bis zur Akademie, höchstens aber bis Ende 2019, gespeichert und zur Planung dieser potentiellen Akademie verwendet. Anonyme summary statistics der Daten können anderen CdE-Orgateams auch darüber hinaus zur Verfügung stehen.</p>
+</html>
