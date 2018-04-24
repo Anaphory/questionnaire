@@ -21,7 +21,6 @@ def application(env, start_response):
         try:
             data_dict = {key: fs.getfirst(key) for key in fs.keys()}
             data_dict["IP-Hash"] = hashlib.sha256(remote.encode("utf-8")).hexdigest()
-            print(data_dict)
             with open("log.txt", "at", encoding="utf-8") as logfile:
                 formatter = csv.DictWriter(
                     logfile,
