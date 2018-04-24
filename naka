@@ -22,14 +22,14 @@ def application(env, start_response):
             data_dict = {key: fs.getfirst(key) for key in fs.keys()}
             data_dict["IP-Hash"] = hashlib.sha256(remote.encode("utf-8")).hexdigest()
             print(data_dict)
-            with open("log.txt", "at") as logfile:
+            with open("log.txt", "at", encoding="utf-8") as logfile:
                 formatter = csv.DictWriter(
                     logfile,
                     ["IP-Hash", "Name", 'Land', 'Einschr', 'TddE', 'November', 'Fr2019kurz', 'Fr2019', 'Kommentar', "Thema", "Leiter"])
                 formatter.writerow(data_dict)
             response_body = "Danke!"
         except Exception as e:
-            with open("errorlog", "a") as log:
+            with open("errorlog", "a", encoding="utf-8") as log:
                 log.write("\n") 
                 log.write(str(e)) 
             response_body = """Fehler. Schreibst du uns bitte eine Mail an naka18@aka.cde-ev.de?"""
@@ -37,7 +37,7 @@ def application(env, start_response):
         try:
             response_body = form()
         except Exception as e:
-            with open("errorlog", "a") as log:
+            with open("errorlog", "a", encoding="utf-8") as log:
                 log.write("\n") 
                 log.write(str(e)) 
     response_body = response_body.encode("utf-8")
